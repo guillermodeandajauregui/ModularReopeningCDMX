@@ -23,7 +23,7 @@ reapertura_total <-  rename_and_rearrange(reapertura_total)
 
 reapertura_total_dflist <- lapply(reapertura_total, vroom::vroom)
 
-curva_rt   <- plot_epicurve(reapertura_total_dflist) + ggtitle("Reapertura Completa")
+curva_rt   <- plot_epicurve(reapertura_total_dflist) + ggtitle("Complete Reopening")
 summary_rt <- summary_epicurve(reapertura_total_dflist)
 
 # JNSD ----
@@ -72,6 +72,23 @@ random_15_dflist <- lapply(random_15, vroom::vroom)
 curva_random_15   <- plot_epicurve(random_15_dflist, my_colour = "orange") + ggtitle("Reactivation of 15% of the population", 
                                                                                      subtitle = "arbitrary reopening")
 summary_random_15 <- summary_epicurve(random_15_dflist)
+
+
+
+
+
+# Random 20% reopening ----
+
+random_20 <- list.files(path = "results/random_20/", full.names = T)
+random_20 <-  rename_and_rearrange(random_20)
+
+
+random_20_dflist <- lapply(random_20, vroom::vroom)
+
+curva_random_20   <- plot_epicurve(random_20_dflist, my_colour = "orange") + ggtitle("Reactivation of 20% of the population", 
+                                                                                     subtitle = "arbitrary reopening")
+summary_random_20 <- summary_epicurve(random_20_dflist)
+
 
 # Random 25% reopening ----
 
@@ -171,6 +188,45 @@ curva_mod_m5X   <- plot_epicurve(mod_m5X_dflist, my_colour = "purple") + ggtitle
                                                                                  subtitle = "modular reopening")
 summary_mod_m5X <- summary_epicurve(mod_m5X_dflist)
 
+
+# Modular - 20% smart selection ----
+
+mod_smart20 <- list.files(path = "results/smartmod_01/", full.names = T)
+mod_smart20 <-  rename_and_rearrange(mod_smart20)
+
+
+mod_smart20_dflist <- lapply(mod_smart20, vroom::vroom)
+
+curva_mod_smart20   <- plot_epicurve(mod_smart20_dflist, my_colour = "darkgreen") + ggtitle("Reactivation of 20% of the population", 
+                                                                                 subtitle = "smart modular reopening")
+summary_mod_smart20 <- summary_epicurve(mod_smart20_dflist)
+
+
+# Modular - 50% non smart selection ----
+
+mod_50 <- list.files(path = "results/m50/", full.names = T)
+mod_50 <-  rename_and_rearrange(mod_50)
+
+
+mod_50_dflist <- lapply(mod_50, vroom::vroom)
+
+curva_mod_50   <- plot_epicurve(mod_50_dflist, my_colour = "purple") + ggtitle("Reactivation of 50% of the population", 
+                                                                                            subtitle = "modular reopening")
+summary_mod_50 <- summary_epicurve(mod_50_dflist)
+
+# Modular - 50% smart selection ----
+
+mod_smart50 <- list.files(path = "results/smartmod_50/", full.names = T)
+mod_smart50 <-  rename_and_rearrange(mod_smart50)
+
+
+mod_smart50_dflist <- lapply(mod_smart50, vroom::vroom)
+
+curva_mod_smart50   <- plot_epicurve(mod_smart50_dflist, my_colour = "darkgreen") + ggtitle("Reactivation of 50% of the population", 
+                                                                                            subtitle = "smart modular reopening")
+summary_mod_smart50 <- summary_epicurve(mod_smart50_dflist)
+
+
 ################################################################################
 #join data 
 ################################################################################
@@ -186,4 +242,9 @@ lista_sumarios %>%
   select(simulacion, t_max_mean, t_max_sd) %>% 
   arrange(t_max_mean)
 
+lista_sumarios
+
+lista_sumarios 
+
 lista_dasplots <- mget(ls(pattern = "curva_", sorted = T)) %>% cowplot::plot_grid(plotlist = ., nrow = 5)
+lista_dasplots

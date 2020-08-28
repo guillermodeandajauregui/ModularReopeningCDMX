@@ -33,6 +33,19 @@ g %>% write_graph(file = "results/redes_eon/g_cdmx_infomap.graphml", format = "g
 #Make Susana distancia network - based on a 75% mobility reduction
 ################################################################################
 
+#for work purposes, let's add a name variable 
+g <- 
+  g %>% 
+  as_tbl_graph %>% 
+  activate("nodes") %>% 
+  mutate(name = id)
+
+g_susana <- 
+  g_susana %>% 
+  as_tbl_graph %>% 
+  activate("nodes") %>% 
+  mutate(name = id)
+
 # Susana Distancia Network ----
 
 #since we only know aggregated mobility data
