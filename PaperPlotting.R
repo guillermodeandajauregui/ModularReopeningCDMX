@@ -80,6 +80,7 @@ projected %>%
   scale_fill_manual(values = c("black", "red"))
 
 
+list(nonsmart_projection, smart_projection) %>% cowplot::plot_grid(plotlist = ., nrow = 2, labels = "AUTO")
 
 ################################################################################
 lista_curvasRandom <- mget(ls(pattern = "curva_random", sorted = T))
